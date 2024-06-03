@@ -77,14 +77,7 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ currentUser }) => {
   return (
     <>
       <Heading title="Зареєструватися" />
-      <Button
-        outline
-        label="Продовжити Google"
-        icon={AiOutlineGoogle}
-        onClick={() => {
-          signIn("google");
-        }}
-      />
+     
       <hr className="bg-slate-300 w-full h-px" />
       <Input
         id="name"
