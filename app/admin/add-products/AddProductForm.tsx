@@ -80,16 +80,16 @@ const AddProductForm = () => {
 
     if (!data.category) {
       setIsLoading(false);
-      return toast.error("Категорія не обрана!");
+      return toast.error("Category is not selected!");
     }
 
     if (!data.images || data.images.length === 0) {
       setIsLoading(false);
-      return toast.error("Зображення не вибрано!");
+      return toast.error("No selected image!");
     }
 
     const handleImageUploads = async () => {
-      toast("Створення продукту, зачекайте..");
+      toast("Creating product, please wait..");
       try {
         for (const item of data.images) {
           if (item.image) {
@@ -140,7 +140,7 @@ const AddProductForm = () => {
       } catch (error) {
         setIsLoading(false);
         console.log("Error handling image uploads", error);
-        return toast.error("Помилка обробки завантажень зображень");
+        return toast.error("Error handling image uploads");
       }
     };
 
@@ -150,12 +150,12 @@ const AddProductForm = () => {
     axios
       .post("/api/product", productData)
       .then(() => {
-        toast.success("Продукт створений");
+        toast.success("Product created");
         setIsProductCreated(true);
         router.refresh();
       })
       .catch((error) => {
-        toast.error("Під час збереження продукту в базі даних сталася помилка");
+        toast.error("Something went wrong when saving product to db");
       })
       .finally(() => {
         setIsLoading(false);
@@ -197,10 +197,10 @@ const AddProductForm = () => {
 
   return (
     <>
-      <Heading title="Додати продукт" center />
+      <Heading title="Add a Product" center />
       <Input
         id="name"
-        label="Ім'я"
+        label="Name"
         disabled={isLoading}
         register={register}
         errors={errors}
@@ -208,7 +208,7 @@ const AddProductForm = () => {
       />
       <Input
         id="price"
-        label="Ціна"
+        label="Price"
         disabled={isLoading}
         register={register}
         errors={errors}
@@ -217,7 +217,7 @@ const AddProductForm = () => {
       />
       <Input
         id="brand"
-        label="Бренд"
+        label="Brand"
         disabled={isLoading}
         register={register}
         errors={errors}
@@ -225,7 +225,7 @@ const AddProductForm = () => {
       />
       <TextArea
         id="description"
-        label="Опис"
+        label="Description"
         disabled={isLoading}
         register={register}
         errors={errors}
@@ -234,10 +234,10 @@ const AddProductForm = () => {
       <CustomCheckBox
         id="inStock"
         register={register}
-        label="Цей товар є в наявності"
+        label="This product is in stock"
       />
       <div className="w-full font-medium">
-        <div className="mb-2 font-semibold">Виберіть категорію</div>
+        <div className="mb-2 font-semibold">Select a Category</div>
         <div className="grid grid-cols-2 md:grid-cols-3 gap-3 max-h[50vh] overflow-y-auto">
           {categories.map((item) => {
             if (item.label === "All") {
@@ -260,11 +260,11 @@ const AddProductForm = () => {
       <div className="w-full flex flex-col flex-wrap gap-4">
         <div>
           <div className="font-bold">
-          Виберіть доступні кольори продукту та завантажте їх зображення.
+            Select the available product colors and upload their images.
           </div>
           <div className="text-sm">
-          Ви повинні завантажити зображення для кожного кольору, вибраного інакше
- ваш вибір кольору буде проігноровано.
+            You must upload an image for each of the color selected otherwise
+            your color selection will be ignored.
           </div>
         </div>
         <div className="grid grid-cols-2 gap-3">
@@ -282,7 +282,7 @@ const AddProductForm = () => {
         </div>
       </div>
       <Button
-        label={isLoading ? "Завантаження..." : "Додати продукт"}
+        label={isLoading ? "Loading..." : "Add Product"}
         onClick={handleSubmit(onSubmit)}
       />
     </>

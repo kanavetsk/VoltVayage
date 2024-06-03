@@ -45,12 +45,13 @@ const ProductCard: React.FC<ProductCardProps> = ({ data }) => {
       "
       >
         <div className="aspect-square overflow-hidden relative w-full">
-          <Image
-            fill
-            src={data.images[0].image}
-            alt={data.name}
-            className="w-full h-full object-contain"
-          />
+        <Image
+  fill
+  src={data.images?.[0]?.image || '/path/to/default/image.jpg'}
+  alt={data.name}
+  className="w-full h-full object-contain"
+/>
+
         </div>
         <div className="mt-4">{truncateText(data.name)}</div>
         <div>

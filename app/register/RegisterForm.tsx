@@ -77,7 +77,14 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ currentUser }) => {
   return (
     <>
       <Heading title="Зареєструватися" />
-     
+      <Button
+        outline
+        label="Продовжити Google"
+        icon={AiOutlineGoogle}
+        onClick={() => {
+          signIn("google");
+        }}
+      />
       <hr className="bg-slate-300 w-full h-px" />
       <Input
         id="name"
@@ -109,9 +116,9 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ currentUser }) => {
         onClick={handleSubmit(onSubmit)}
       />
       <p className="text-sm">
-      Вже є аккаунт?{" "}
+      Вже є акаунт?{" "}
         <Link className="underline" href="/login">
-        авторизуватися
+          Зарєструватися
         </Link>
       </p>
     </>
