@@ -96,7 +96,7 @@ const CartClient: React.FC<CartClientProps> = ({ currentUser }) => {
           "
           >
             <MdArrowBack />
-            <span>Continue Shopping</span>
+            <span>Продовжити покупки</span>
           </Link>
         </div>
       </div>
